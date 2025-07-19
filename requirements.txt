@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+huggingface_hub
+transformers
+torch
+onnxruntime
+sentencepiece
+numpy
+scipy
+pydantic
