@@ -7,6 +7,15 @@ from models.translation import translate_text
 from models.stt import transcribe_audio
 from models.tts import generate_tts_audio
 
+import os
+from huggingface_hub import login
+
+# Authentifie Hugging Face avec un token stocké dans les variables d'environnement
+if "HF_TOKEN" in os.environ:
+    login(token=os.environ["HF_TOKEN"])
+else:
+    print("⚠️ Aucun HF_TOKEN trouvé. Les modèles publics fonctionneront, mais pas les privés.")
+
 app = FastAPI()
 
 UPLOAD_DIR = "uploads"
