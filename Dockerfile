@@ -22,8 +22,9 @@ RUN pip install --upgrade pip && \
 ENV TRANSFORMERS_CACHE=/app/hf_cache
 RUN mkdir -p /app/hf_cache
 
-# Étape 7 : Exposer le port pour Uvicorn
-EXPOSE 8000
+# Étape 7 : Exposer le port (Render utilisera la variable PORT)
+ENV PORT=8000
+EXPOSE $PORT
 
-# Étape 8 : Commande de lancement
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Étape 8 : Commande de lancement avec le port dynamique
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port $PORT"]
