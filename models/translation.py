@@ -57,8 +57,8 @@ def load_translation_model(src: str, tgt: str):
 
     # Cas 2 : Modèles Transformers (fr_ff, ff_fr)
     else:
-        tokenizer = AutoTokenizer.from_pretrained(f"{MODEL_REPO}/{subdir}", cache_dir="./cache")
-        model = AutoModelForSeq2SeqLM.from_pretrained(f"{MODEL_REPO}/{subdir}", cache_dir="./cache", torch_dtype=torch.float32)
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO, subfolder=subdir, cache_dir=".cache/")
+        model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_REPO, subfolder=subdir, cache_dir=".cache/", torch_dtype=torch.float32)
         model.eval()
 
         MODEL_CACHE[key] = {
